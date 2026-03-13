@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Récapitulatif — Les Toits du Barry</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brun:       #6B4F3A;
+    --brun-clair: #A0785A;
+    --beige:      #F5EFE6;
+    --beige-mid:  #EDE3D6;
+    --beige-dark: #D9CABC;
+    --pistache:   #8FAF7E;
+    --pistache-light: #D4E8C9;
+    --pistache-dark:  #5C7A4E;
+    --cream:      #FAF7F2;
+    --text:       #2C2018;
+    --text-soft:  #7A6555;
+    --white:      #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; margin: 0; border-radius: 0; }
+    .no-print { display: none; }
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 40px auto;
+    background: var(--white);
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 8px 60px rgba(107,79,58,0.12);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--brun);
+    padding: 48px 56px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: "";
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    background: var(--brun-clair);
+    border-radius: 50%;
+    opacity: 0.25;
+  }
+  .header::after {
+    content: "";
+    position: absolute;
+    bottom: -40px; left: 30%;
+    width: 180px; height: 180px;
+    background: var(--pistache);
+    border-radius: 50%;
+    opacity: 0.15;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative; z-index: 1;
+  }
+  .brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--white);
+    font-weight: 600;
+    letter-spacing: -0.3px;
+  }
+  .brand span {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--beige-dark);
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+  .date-badge {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50px;
+    padding: 6px 18px;
+    font-size: 12px;
+    color: var(--beige);
+    letter-spacing: 0.4px;
+  }
+  .header-title {
+    margin-top: 36px;
+    position: relative; z-index: 1;
+  }
+  .header-title h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    color: var(--white);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .header-title h1 em {
+    font-style: italic;
+    color: var(--pistache-light);
+  }
+  .header-sub {
+    font-size: 14px;
+    color: var(--beige-dark);
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── BODY ── */
+  .body { padding: 52px 56px; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 52px; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--pistache-dark);
+    margin-bottom: 18px;
+  }
+  .section-label::before {
+    content: "";
+    width: 28px; height: 2px;
+    background: var(--pistache);
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--brun);
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+
+  p { color: var(--text-soft); margin-bottom: 12px; font-weight: 300; }
+  p strong { color: var(--text); font-weight: 500; }
+
+  /* ── BULLETS ── */
+  .list { list-style: none; padding: 0; margin: 16px 0; }
+  .list li {
+    padding: 8px 0 8px 28px;
+    position: relative;
+    color: var(--text-soft);
+    font-weight: 300;
+    border-bottom: 1px solid var(--beige-mid);
+  }
+  .list li:last-child { border-bottom: none; }
+  .list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--pistache-dark);
+    font-weight: 500;
+  }
+
+  /* ── NOTE CARD ── */
+  .note-card {
+    background: var(--beige);
+    border-left: 3px solid var(--brun-clair);
+    border-radius: 0 16px 16px 0;
+    padding: 20px 24px;
+    margin: 20px 0;
+    font-size: 13.5px;
+    color: var(--text-soft);
+    font-style: italic;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--beige-dark);
+    margin: 0 0 52px 0;
+  }
+
+  /* ── OFFRES TABLE ── */
+  .offers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 24px 0;
+  }
+
+  .offer-card {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid var(--beige-dark);
+    transition: transform 0.2s;
+  }
+  .offer-card.featured {
+    border-color: var(--pistache);
+    box-shadow: 0 4px 24px rgba(143,175,126,0.2);
+  }
+
+  .offer-head {
+    padding: 22px 24px 18px;
+    background: var(--beige);
+  }
+  .offer-card.featured .offer-head {
+    background: var(--pistache-light);
+  }
+  .offer-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--brun-clair);
+    background: rgba(107,79,58,0.1);
+    padding: 3px 10px;
+    border-radius: 50px;
+    margin-bottom: 10px;
+  }
+  .offer-card.featured .offer-badge {
+    color: var(--pistache-dark);
+    background: rgba(92,122,78,0.12);
+  }
+  .offer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--brun);
+    margin-bottom: 6px;
+  }
+  .offer-price {
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--brun);
+    line-height: 1;
+  }
+  .offer-price sup { font-size: 18px; vertical-align: top; margin-top: 6px; display: inline-block; }
+  .offer-price-sub { font-size: 12px; color: var(--text-soft); margin-top: 4px; }
+
+  .offer-body { padding: 20px 24px; }
+
+  .offer-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--beige-mid);
+    font-size: 13.5px;
+    color: var(--text-soft);
+  }
+  .offer-item:last-child { border-bottom: none; }
+  .check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .check.yes { background: var(--pistache-light); color: var(--pistache-dark); }
+  .check.no  { background: var(--beige-mid); color: var(--beige-dark); }
+
+  /* ── WHAT'S INCLUDED TABLE ── */
+  .included-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 24px 0;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--beige-dark);
+  }
+  .included-table thead th {
+    padding: 14px 18px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .included-table thead th:first-child {
+    text-align: left;
+    background: var(--brun);
+    color: var(--beige);
+    width: 55%;
+  }
+  .included-table thead th:nth-child(2) {
+    background: var(--beige-dark);
+    color: var(--brun);
+  }
+  .included-table thead th:nth-child(3) {
+    background: var(--pistache);
+    color: var(--white);
+  }
+  .included-table tbody tr:nth-child(even) td { background: var(--beige); }
+  .included-table tbody tr:nth-child(odd) td { background: var(--white); }
+  .included-table tbody td {
+    padding: 11px 18px;
+    font-size: 13.5px;
+    color: var(--text-soft);
+    border-bottom: 1px solid var(--beige-mid);
+  }
+  .included-table tbody tr:last-child td { border-bottom: none; }
+  .included-table tbody td:nth-child(2),
+  .included-table tbody td:nth-child(3) {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .tick-yes { color: var(--pistache-dark); }
+  .tick-no  { color: var(--beige-dark); }
+
+  .price-row td {
+    padding: 14px 18px !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    border-bottom: none !important;
+  }
+  .price-row td:first-child { background: var(--brun) !important; color: var(--beige) !important; font-family: 'Playfair Display', serif; font-style: italic; }
+  .price-row td:nth-child(2) { background: var(--beige-dark) !important; color: var(--brun) !important; font-size: 20px !important; }
+  .price-row td:nth-child(3) { background: var(--pistache) !important; color: var(--white) !important; font-size: 20px !important; }
+
+  /* ── CONDITIONS ── */
+  .conditions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .cond-card {
+    background: var(--beige);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .cond-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--brun-clair);
+    margin-bottom: 6px;
+  }
+  .cond-value {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* ── DRIVE CARDS ── */
+  .drive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .drive-card {
+    background: var(--beige);
+    border-radius: 16px;
+    padding: 20px 18px;
+    text-align: center;
+  }
+  .drive-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  .drive-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: var(--brun);
+    margin-bottom: 6px;
+  }
+  .drive-desc {
+    font-size: 12.5px;
+    color: var(--text-soft);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline { margin: 24px 0; }
+  .timeline-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--beige-mid);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-dot {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--pistache-light);
+    border: 2px solid var(--pistache);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+  .timeline-content {}
+  .timeline-date {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--pistache-dark);
+    margin-bottom: 2px;
+  }
+  .timeline-text {
+    font-size: 14px;
+    color: var(--text-soft);
+    font-weight: 300;
+  }
+
+  /* ── PAYMENT VISUAL ── */
+  .payment-visual {
+    display: flex;
+    gap: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 20px 0;
+    border: 1px solid var(--beige-dark);
+  }
+  .pay-half {
+    flex: 1;
+    padding: 20px 24px;
+    text-align: center;
+  }
+  .pay-half:first-child { background: var(--brun); }
+  .pay-half:last-child { background: var(--beige); }
+  .pay-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .pay-half:first-child .pay-pct { color: var(--white); }
+  .pay-half:last-child .pay-pct { color: var(--brun); }
+  .pay-label {
+    font-size: 13px;
+    font-weight: 300;
+  }
+  .pay-half:first-child .pay-label { color: var(--beige-dark); }
+  .pay-half:last-child .pay-label { color: var(--text-soft); }
+  .pay-divider {
+    width: 2px;
+    background: var(--beige-dark);
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--brun);
+    padding: 32px 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .footer-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    font-style: italic;
+  }
+  .footer-sub {
+    font-size: 12px;
+    color: var(--beige-dark);
+    font-weight: 300;
+    margin-top: 4px;
+  }
+  .cta-btn {
+    background: var(--pistache);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  /* Print button */
+  .print-btn {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    background: var(--brun);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(107,79,58,0.3);
+    z-index: 100;
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">🖨 Imprimer / PDF</button>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div class="brand">
+        Valériane
+        <span>Consultante Marketing Digital &amp; WordPress</span>
+      </div>
+      <div class="date-badge">Mars 2026</div>
+    </div>
+    <div class="header-title">
+      <h1>Récapitulatif de<br><em>notre échange</em></h1>
+      <div class="header-sub">Les Toits du Barry &nbsp;·&nbsp; Laure</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- CONTEXTE -->
+    <div class="section">
+      <div class="section-label">Contexte</div>
+      <h2>Ce que vous m'avez confié</h2>
+      <p>Lors de notre visio, vous m'avez exposé votre situation : vous gérez un <strong>gîte à Alba-la-Romaine</strong> et souhaitez améliorer votre présence en ligne pour capter les voyageurs qui vous cherchent directement sur Google.</p>
+      <ul class="list">
+        <li>Un design naturel, épuré et moderne</li>
+        <li>Un chemin utilisateur fonctionnel avec un bouton réserver clair</li>
+        <li>Intégrer le widget de réservation Open Pro (actuellement bloqué par WordPress.com)</li>
+        <li>Améliorer la visibilité sur les recherches locales — gîte Ardèche, Alba-la-Romaine…</li>
+        <li>Pouvoir modifier vous-même votre contenu en toute autonomie</li>
+      </ul>
+      <div class="note-card">
+        Vous m'avez précisé que la réservation directe n'est pas votre priorité financière — votre objectif est avant tout d'améliorer votre <strong>taux de remplissage</strong> grâce à une meilleure visibilité Google et d'avoir un chemin utilisateur fonctionnel avec un bouton réserver clair et accessible.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- OFFRES -->
+    <div class="section">
+      <div class="section-label">Proposition</div>
+      <h2>Deux offres, un seul objectif</h2>
+      <p>Ci-joint vous trouverez les deux devis détaillés. Voici le comparatif :</p>
+
+      <table class="included-table">
+        <thead>
+          <tr>
+            <th>Prestations incluses</th>
+            <th>Essentiel</th>
+            <th>Complet</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Création design + charte graphique</td><td class="tick-yes">✓</td><td class="tick-yes">✓</td></tr>
+          <tr><td>4 pages — Accueil, Logement, Tarifs, Contact</td><td class="tick-yes">✓</td><td class="tick-yes">✓</td></tr>
+          <tr><td>Chemin utilisateur optimisé</td><td class="tick-yes">✓</td><td class="tick-yes">✓</td></tr>
+          <tr><td>Intégration widget Open Pro</td><td class="tick-yes">✓</td><td class="tick-yes">✓</td></tr>
+          <tr><td>Site responsive — ordi, tablette, mobile</td><td class="tick-yes">✓</td><td class="tick-yes">✓</td></tr>
+          <tr><td>FAQ offerte</td><td class="tick-yes">✓</td><td class="tick-yes">✓</td></tr>
+          <tr><td>Preuves sociales — Gîtes de France + Booking</td><td class="tick-yes">✓</td><td class="tick-yes">✓</td></tr>
+          <tr><td>Portail Google Drive personnalisé</td><td class="tick-yes">✓</td><td class="tick-yes">✓</td></tr>
+          <tr><td>2h de RDV visios incluses (hors formation)</td><td class="tick-yes">✓</td><td class="tick-yes">✓</td></tr>
+          <tr><td>Création logo — 3 propositions</td><td class="tick-yes">✓</td><td class="tick-yes">✓</td></tr>
+          <tr><td>Mini formation autonomie — 1h</td><td class="tick-yes">✓</td><td class="tick-yes">✓</td></tr>
+          <tr><td>Maintenance offerte — 1 mois</td><td class="tick-yes">✓</td><td class="tick-yes">✓</td></tr>
+          <tr><td>Inscription Google Search Console</td><td class="tick-no">–</td><td class="tick-yes">✓</td></tr>
+          <tr><td>SEO basique — meta titre + meta description / page</td><td class="tick-no">–</td><td class="tick-yes">✓</td></tr>
+          <tr><td>Optimisation vitesse &amp; sécurité</td><td class="tick-no">–</td><td class="tick-yes">✓</td></tr>
+          <tr class="price-row">
+            <td>Forfait total</td>
+            <td>750 €</td>
+            <td>850 €</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note-card">
+        ⚠️ <strong>Accompagnement à l'achat d'hébergement inclus.</strong> Votre site actuel est sur WordPress.com (version gratuite) — cela bloque l'installation du widget Open Pro. Je vous accompagne pas à pas pour choisir et souscrire votre hébergement WordPress.org. Tarif indicatif : <strong>3 €/mois la première année</strong>, puis environ <strong>10 €/mois</strong> — directement à votre nom.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- PAIEMENT -->
+    <div class="section">
+      <div class="section-label">Modalités</div>
+      <h2>Conditions &amp; paiement</h2>
+
+      <div class="payment-visual">
+        <div class="pay-half">
+          <div class="pay-pct">50%</div>
+          <div class="pay-label">À la signature du devis</div>
+        </div>
+        <div class="pay-divider"></div>
+        <div class="pay-half">
+          <div class="pay-pct">50%</div>
+          <div class="pay-label">À la mise en ligne du site</div>
+        </div>
+      </div>
+
+      <div class="conditions-grid">
+        <div class="cond-card">
+          <div class="cond-label">Retours maquette &amp; site</div>
+          <div class="cond-value">1 retour inclus</div>
+        </div>
+        <div class="cond-card">
+          <div class="cond-label">Propositions logo</div>
+          <div class="cond-value">3 propositions, sans retour</div>
+        </div>
+        <div class="cond-card">
+          <div class="cond-label">Ajustements site</div>
+          <div class="cond-value">Ajustements mineurs après livraison uniquement</div>
+        </div>
+        <div class="cond-card">
+          <div class="cond-label">Hébergement</div>
+          <div class="cond-value">À votre charge — guidage inclus</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- DRIVE -->
+    <div class="section">
+      <div class="section-label">Organisation</div>
+      <h2>Votre portail Google Drive</h2>
+      <p>Dès votre accord, je crée et personnalise votre espace de travail. Vous y trouverez :</p>
+      <div class="drive-grid" style="grid-template-columns: repeat(4,1fr);">
+        <div class="drive-card">
+          <div class="drive-icon">📋</div>
+          <div class="drive-title">Cahier des charges</div>
+          <div class="drive-desc">À compléter pour cadrer le projet</div>
+        </div>
+        <div class="drive-card">
+          <div class="drive-icon">📸</div>
+          <div class="drive-title">Photos</div>
+          <div class="drive-desc">Déposez toutes vos photos en haute qualité</div>
+        </div>
+        <div class="drive-card">
+          <div class="drive-icon">✨</div>
+          <div class="drive-title">Inspirations</div>
+          <div class="drive-desc">Sites et visuels qui vous plaisent</div>
+        </div>
+        <div class="drive-card">
+          <div class="drive-icon">🗂</div>
+          <div class="drive-title">Administratif</div>
+          <div class="drive-desc">Devis, factures et documents du projet</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- PLANNING -->
+    <div class="section">
+      <div class="section-label">Planning</div>
+      <h2>Calendrier indicatif</h2>
+      <p>Le timing reste indicatif et dépend notamment de la rapidité de transmission de vos contenus.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot">📅</div>
+          <div class="timeline-content">
+            <div class="timeline-date">1er RDV à planifier ensemble</div>
+            <div class="timeline-text">Prise de l'hébergement + premières idées de design</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">🎨</div>
+          <div class="timeline-content">
+            <div class="timeline-date">Avril — Retour maquette</div>
+            <div class="timeline-text">Maquette version ordinateur à valider — visio si besoin pour ajustements</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">🛠</div>
+          <div class="timeline-content">
+            <div class="timeline-date">15 – 30 avril — Intégration</div>
+            <div class="timeline-text">Intégration complète du site — ordinateur, téléphone, tablette</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">✅</div>
+          <div class="timeline-content">
+            <div class="timeline-date">Fin avril – début mai — Lancement</div>
+            <div class="timeline-text">Checklist de tests avant mise en ligne</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>
+      <div class="footer-text">Hâte de travailler avec vous, merci pour votre confiance !</div>
+      <div class="footer-sub" style="margin-top:10px; line-height:2;">
+        Pour les échanges rapides, je fonctionne par WhatsApp : <strong style="color:var(--beige);">+33 06 14 96 85 46</strong><br>
+        Tout ce qui concerne le projet se passera via le Drive — plus fluide, tout est centralisé.<br>
+        N'hésitez pas à m'appeler si vous avez des questions avant de démarrer 😊
+      </div>
+    </div>
+  </div>
+
+</div><!-- /pag
